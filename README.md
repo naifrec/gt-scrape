@@ -18,7 +18,7 @@ Table with all car information available [in GT2 Wiki](https://gran-turismo.fand
 Plot showing the distribution of all cars, and also prize cars, per manufacturing
 country (see `gt/clean.py` to see how to clean the information to be able to plot this):
 
-<img src="img/distribution-of-cars.jpeg" alt="Distribution of Cars per Manufacturing Country" width="400"/>
+<img src="img/distribution-of-cars.png" alt="Distribution of Cars per Manufacturing Country" width="400"/>
 
 
 ## Download data

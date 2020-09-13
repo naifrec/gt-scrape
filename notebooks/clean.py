@@ -204,7 +204,7 @@ for prize_cars in IGNNAME2WIKINAME.values():
 
 df['IsPrizeCar'].sum()
 
-# Still missing one prize car apparently, but yea fuck this.
+# Still missing one prize car apparently, but yea fuck this. 
 
 data_cars = df['Country'].value_counts().reset_index().rename(
     {'index': 'Manufacturing Country',
