@@ -24,6 +24,16 @@ country (see `gt/clean.py` to see how to clean the information to be able to plo
 ## Download data
 
 Currently hosting scraped data on Dropbox:
+* 2020-09-23 V2: [dropbox download](https://www.dropbox.com/sh/aghqvta3wl0adri/AABQc85oMTnrTcDpycBZzsg4a?dl=0)
+  * added clean table "cars-clean.csv"
+  * cleaned the following fields:
+    * `str` to `int`: height, width, length, displacement, max power, power weight ratio, weight
+    * `str` to `str`: drivetrain
+  * added new fields:
+    * "Country" and "Continent" of origin
+    * "IsPrizeCar": is the car a prize car
+    * "IsRaceModifiable": is the car race modifiable
+    * "Date": manufacturing date
 * 2020-09-12 V1: [dropbox download](https://www.dropbox.com/sh/7s1ot25vp3keozi/AACOgNtRYVBSs0whvyXedSbLa?dl=0)
 
 
