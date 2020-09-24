@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from gt.table import utils
+from gt.table import mappings, scrape, utils
 
 
 def create_table(root=None):
@@ -24,6 +24,12 @@ def create_table(root=None):
     df = utils.add_is_prize_car(df, path=str(root / 'prize_cars.csv'))
     df = utils.add_is_race_modifiable(df)
     df = utils.add_manufacturing_date(df)
+
+    print('Download images for cars')
+    df = scrape.scrape_car_images(df)
+
+    print('Remove empty fields')
+    df.drop(mappings.COLUMNS_TO_DISCARD, axis=1, inplace=True)
 
     # save
     filepath = str(root / 'cars-clean.csv')
