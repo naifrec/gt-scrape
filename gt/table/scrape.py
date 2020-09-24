@@ -1,9 +1,12 @@
 import re
-from pathlib import Path
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from tqdm import tqdm
+
+from gt.paths import IMAGE_DIR
+
 
 URL_DOMAIN = 'https://gran-turismo.fandom.com'
 URL_CAR_LIST = URL_DOMAIN + '/wiki/Gran_Turismo_2/Car_List'
@@ -131,6 +134,41 @@ def scrape_date_from_description(href):
         return year
     else:
         return None
+
+
+def download_image(url, path):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(str(path), 'wb') as handle:
+            for chunk in response:
+                handle.write(chunk)
+    else:
+        print(f'Could not download image (code {response.status_code}): {url}')
+
+
+def scrape_car_images(df):
+    IMAGE_DIR.mkdir(exist_ok=True)
+    df['ImagePath'] = None
+    for i, row in tqdm(df.iterrows(), total=len(df)):
+        href = row['href']
+
+        # download car page
+        page = requests.get(URL_DOMAIN + href)
+        soup = BeautifulSoup(page.content, 'html.parser')
+
+        # download car image
+        result = soup.find('img', class_='pi-image-thumbnail')
+        if result is None:
+            print(f'Could not find image for {row["Name"]}')
+            continue
+
+        url = result.get('src')
+        name = re.search(r'\/([^\/]*)/revision', url).groups()[0]
+        download_image(url, IMAGE_DIR / name)
+
+        # save image path
+        df.loc[i, 'ImagePath'] = name
+    return df
 
 
 def main(root=None):
