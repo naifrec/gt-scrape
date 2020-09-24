@@ -97,3 +97,15 @@ DRIVETRAIN_MAPPING = {
     'FF (unlisted in GT4)': 'FF',
     '4WD (GT2)FR (GT3-6)': '4WD',
 }
+
+
+COLUMNS_TO_DISCARD = [
+    'Aspiration',
+    'Type in GT5',
+    'Interior in GT6',
+    'Performance Points',
+    'Top Speed',
+    '0-60 Mph',
+    'Standing Quarter Mile',
+    'Internal ID',
+ ]
