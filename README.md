@@ -44,6 +44,7 @@ and create a conda environment called `gt`:
 
 ```bash
 conda create --name gt python=3.6
+conda activate gt
 conda install -c conda-forge --file requirements.txt
 ```
 
